@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+
+<body>                      
+
+<h1> Desafios!</h1>
+
+<script>                    // Inicio do programa em JavaScript
+
+function pulaLinha() {      // Função para pular linha na pagina html
+    document.write("<br>");
+}
+
+function mostra(conteudo) {  // Função para mostrar o conteúdo na pagina html
+    document.write(conteudo);
+    pulaLinha();
+}
+
+// MODULO 2 - Condicionais e concatenação
+mostra("<h2>MODULO 2 - Condicionais e concatenação</h2>");
+
+// Desafio 1 - Mensagem do dia
+mostra("<h3>Desafio 1 - Mensagem do dia</h3>");
+
+let diasDaSemana = ["segunda","Segunda","terça","Terça","quarta","Quarta","quinta",
+"Quinta","sexta","Sexta","sabado","Sabado","domingo","Domingo"];
+let mensagem;
+let mensagem1 = "Tenha uma boa semana";
+let mensagem2 = "Tenha um bom final de semana";        
+let diaDigitado;
+let idMensagem;
+let numeroDigitado;
+let pontuacao;
+
+while (1) {
+    diaDigitado = prompt("Entre com o seu dia atual: ");
+    mostra('Buscando dia "' + diaDigitado + '" no array...');
+    
+    for (var y = 0; y < diasDaSemana.length; y++) {
+        mensagem = "id: " + y + " - " + diaDigitado + " = " + diasDaSemana[y] + " - "
+        if (diaDigitado == diasDaSemana[y] && y <= 9) {
+            idMensagem = 2; 
+            mostra(mensagem + "Sim"); 
+            break;
+        } else if (diaDigitado == diasDaSemana[y] && y > 9){
+            idMensagem = 1;
+            mostra(mensagem + "Sim"); 
+            break;
+        } else {
+            idMensagem = 0;                      
+            mostra(mensagem + "Não");                                      
+        }               
+    }
+    if (idMensagem == 2) { 
+        alert(mensagem1);
+        mostra(mensagem1);
+        console.log(mensagem1);                    
+        break;
+    } else if (idMensagem == 1){
+        alert(mensagem2);
+        mostra(mensagem2);
+        console.log(mensagem2);                             
+        break;
+    } else {
+        mensagem = 'Dia digitado "' + diaDigitado + '" é inválido, digite um dia válido';
+        alert(mensagem);
+        mostra(mensagem);
+        console.log(mensagem);                
+    }
+}
+
+// Desafio 2 - Verifica se o número é positivo ou negativo       
+mostra("<h3>Desafio 2 - Verifica se o número é positivo ou negativo</h3>");
+
+numeroDigitado = parseInt(prompt("Entre com um número qualquer: "));
+mostra("Entre com um número qualquer: " + numeroDigitado);   
+mensagem = "O número digitado " + numeroDigitado + " é ";
+
+if (numeroDigitado < 0) {            
+    alert(mensagem + "negativo");
+    mostra(mensagem + "negativo");
+} else if (numeroDigitado >= 0) {            
+    alert(mensagem+ "positivo");
+    mostra(mensagem+ "positivo");
+} else {
+    alert(mensagem+ "inválido");
+    mostra(mensagem+ "inválido");
+}
+
+// Desafio 3 - Pontuação de um jogo       
+mostra("<h3>Desafio 3 - Pontuação de um jogo</h3>");
+
+numeroDigitado = parseInt(prompt("Informe quantos pontos alcançou no jogo: "));
+mostra("Informe quantos pontos alcançou no jogo: " + numeroDigitado)        
+
+if (numeroDigitado >= 100) {            
+    alert("Parabens, você venceu!");
+    mostra("Parabens, você venceu!");
+} else if (numeroDigitado < 100) {            
+    alert("Tente novamente para ganhar");
+    mostra("Tente novamente para ganhar");
+} else {
+    alert("O número digitado é inválido");
+    mostra("O número digitado é inválido");
+}
+
+// Desafio 4 - Mostrar Saldo com Template String        
+mostra("<h3>Desafio 4 - Mostrar Saldo com Template String</h3>");
+
+let nome = prompt(`Digite seu nome: `);
+let saldo = parseFloat(prompt(`Digite o saldo da sua conta: `));
+mostra(`Nome digitado: ${nome}`);   
+mostra(`Saldo digitado: ${saldo}`) 
+
+mensagem = `${nome}, Seja bem vindo ao ByteBank!`;
+alert(mensagem);
+mostra(mensagem);
+mensagem = `O saldo da sua conta é de R$ ${saldo},00`;
+alert(mensagem);
+mostra(mensagem);
+
+</script>
+</body>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+
+<body>
+
+    <h1> Projeto: Calcula "IMC"!</h1>
+
+    <script>
+
+        function pulaLinha() {
+            document.write("<br>");
+        }
+
+        function mostra(conteudo) {
+            document.write(conteudo);
+            pulaLinha();
+        }
+
+        function calculaImc(peso, altura) {
+            return Math.round(peso / (altura * altura));
+        }
+        
+        numero=1;
+        var qtdImc = prompt("Informe a quantidade de pessoas que irá calcular o IMC");
+        for (var i = 0; i < qtdImc; i++) {
+            var recebePeso = prompt("Informe o peso da "+numero+"ª pessoa");
+            var recebeAltura = prompt("Informe a altura da "+numero+"ª pessoa");
+            var imcCalculado = calculaImc(recebePeso, recebeAltura);
+            var pesoIdeal;
+
+            if (imcCalculado <= 18.5) pesoIdeal = "Você está abaixo do Peso Ideal";
+            if (imcCalculado > 18.5 && imcCalculado <= 26) pesoIdeal = "Você está no Peso Ideal";
+            if (imcCalculado > 26 && imcCalculado <= 30) pesoIdeal = "Alerta! Você está com Sobre-Peso";
+            if (imcCalculado > 30 && imcCalculado <= 35) pesoIdeal = "Alerta! Você está na Obesidade Grau I";
+            if (imcCalculado > 35) pesoIdeal = "Alerta! Você está na Pre-Obesidade Grau II";
+
+            mostra(numero+"ª pessoa");
+            mostra("Peso: "+recebePeso);
+            mostra("Altura: "+recebeAltura);
+            mostra("Seu IMC é: " + imcCalculado + "!");
+            mostra(pesoIdeal);
+            numero++;
+            pulaLinha();
+        }
+    </script>
+</body>

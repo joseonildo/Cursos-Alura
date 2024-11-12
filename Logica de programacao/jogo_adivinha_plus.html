@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+    <h1> Projeto: Jogo "Adivinha Plus"!</h1>
+
+    <p>Informe a quantidade de numeros a ser sorteados</p>
+    <input id="campoSortear">
+    <button id="botaoSortear">Sortear</button>
+    <br>
+    <br>
+    <p id="tagSorteado">
+        O número foi foi sorteado!
+        <br>
+        Agora tente adivinhar qual número foi sorteado!
+    </p>
+    <input id="campoAdivinhar">
+    <button id="botaoAdivinhar">Adivinhar</button>
+    <br>
+    <br>
+    <button id="jogarNovamente">Jogar Novamente?</button>
+
+    <script>
+
+
+        function pulaLinha() {
+            document.write("<br><br>");
+        }
+
+        function mostra(conteudo) {
+            document.write(conteudo);
+            pulaLinha();
+        }
+
+        var tentativas, numeroSorteado, chute;
+
+        var campoSortear = document.querySelector("#campoSortear");
+        var botaoSortear = document.querySelector("#botaoSortear");
+        var campoAdivinhar = document.querySelector("#campoAdivinhar");
+        var botaoAdivinhar = document.querySelector("#botaoAdivinhar");
+        var botaoJogarNovamente = document.querySelector("#jogarNovamente");
+        var tagSorteado = document.querySelector("#tagSorteado");
+
+        botaoSortear.disabled = false;
+        botaoAdivinhar.disabled = true;
+        botaoJogarNovamente.disabled = true;
+
+        function jogarNovamente() {
+            tentativas = 0;
+            campoSortear.value = "";
+            campoSortear.focus();
+            campoAdivinhar.value = "";
+            botaoSortear.disabled = false;
+            botaoAdivinhar.disabled = true;
+            botaoJogarNovamente.disabled = true;
+            tagSorteado.style.visibility = 'hidden';
+        }
+
+        function sortearNumero() {
+            var quantidadeNumeros = parseInt(campoSortear.value);
+            if (isNaN(quantidadeNumeros) || quantidadeNumeros < 1) {
+                alert("Digite um número válido! (1 a 100)");
+                campoSortear.value = "";
+                campoSortear.focus();
+            }
+            else {
+                numeroSorteado = Math.round(Math.random() * quantidadeNumeros);
+                tentativas = Math.round(quantidadeNumeros / 5);
+                botaoSortear.disabled = true;
+                botaoAdivinhar.disabled = false;
+                botaoJogarNovamente.disabled = true;
+                campoAdivinhar.focus();
+                tagSorteado.style.visibility = 'visible';
+            }
+        }
+
+        function adivinharNumero() {
+            chute = parseInt(campoAdivinhar.value);
+            if (isNaN(chute)) {
+                alert("Digite um número válido! (1 a 100)");
+                campoAdivinhar.value = "";
+                campoAdivinhar.focus();
+            }
+            else {
+                if (chute == numeroSorteado) {
+                    alert("Parabens!! Você acertou!! Número " + numeroSorteado);
+                    botaoSortear.disabled = true;
+                    botaoAdivinhar.disabled = true;
+                    botaoJogarNovamente.disabled = false;
+                }
+                else {
+                    tentativas--;
+                    if (tentativas <= 0) {
+                        alert("Você errou! Acabou o número de tentativas! Número correto: " + numeroSorteado);
+                        botaoSortear.disabled = true;
+                        botaoAdivinhar.disabled = true;
+                        botaoJogarNovamente.disabled = false;
+                    }
+                    else {
+                        if (chute < numeroSorteado) {
+                            alert("Você errou! O número é maior! Tentativas restantes: " + tentativas);
+                            campoAdivinhar.value = "";
+                            campoAdivinhar.focus();
+                        }
+                        else {
+                            alert("Você errou! O número é menor! Tentativas restantes: " + tentativas);
+                            campoAdivinhar.value = "";
+                            campoAdivinhar.focus();
+                        }
+                    }
+                }
+            }
+        }
+
+        botaoSortear.onclick = sortearNumero;
+        botaoAdivinhar.onclick = adivinharNumero;
+        botaoJogarNovamente.onclick = jogarNovamente;
+        campoSortear.focus();
+        tagSorteado.style.visibility = 'hidden';
+
+    </script>
+</body>

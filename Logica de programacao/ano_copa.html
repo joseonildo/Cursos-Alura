@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+
+<body>
+
+    <h1> Projeto: "Ano Copa"!</h1>
+
+    <script>
+        function pulaLinha() {
+            document.write("<br>");
+        }
+
+        function mostra(conteudo) {
+            document.write(conteudo);
+            pulaLinha();
+        }
+
+        var limite;
+        var anoCopa = 1930;
+        var anoAtual = 2023;
+
+        while (limite == undefined || isNaN(limite) || limite < 1930) {
+            limite = parseInt(prompt("Entre com o ano limite: (Obs: maior que 1930)"));
+        }
+
+        while (anoCopa <= limite) {
+            if (anoCopa <= anoAtual) mostra("Teve copa em " + anoCopa);
+            else mostra("Terá copa em " + anoCopa);
+            anoCopa += 4;
+        }
+
+        mostra("FIM");
+    </script>
+</body>

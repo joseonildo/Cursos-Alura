@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Jogo - Número Secreto</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container__conteudo">
+            <div class="container__informacoes">                
+                <div class="container__texto">
+                    <h1>Jogo <br>Número Secreto</h1>
+                    <div class="container__fala">      
+                        <p class="texto__paragrafo">Ativar a fala:</p>
+                        <span"><i class="fa fa-volume-up fa-2x" style="color:rgb(255, 255, 255);opacity:.5"></i></span>
+                    </div><br>
+                    <label for="dificuldade" class="texto__paragrafo">Escolha o nível de dificuldade:</label><br>
+                    <select name="dificuldade" id="dificuldade" class="container__select">
+                        <option value="facil">Facil - 20 chutes</option>
+                        <option value="media">Média - 10 chutes</option>
+                        <option value="dificil">Difícil - 5 chutes</option>
+                    </select> 
+                    <button onclick="selecionarDificuldade()" id="selecionarDificuldade" class="container__botao1">OK</button>
+                    <br><br>
+                    <p1 class="texto__paragrafo"></p1><br>
+                    <p2 class="texto__paragrafo"></p2>
+                </div>
+                <input min="1" max="20" id="campoChute" class="container__input">                
+                <div class="chute container__botoes">
+                    <button onclick="chutar()" id="chutar" class="container__botao2">Chutar</button>
+                    <button onclick="novoJogo()" id="novoJogo" class="container__botao2">Novo jogo</button>
+                </div>
+            </div>
+            <img src="./img/ia.png" alt="Uma pessoa olhando para a esquerda" class="container__imagem-pessoa" />
+        </div>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+
+</html>

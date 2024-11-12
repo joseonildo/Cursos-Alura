@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+
+<body>
+
+    <h1> Projeto: Futebol!</h1>
+    <script>
+
+        function pulaLinha() {
+            document.write("<br><br>");
+        }
+
+        function mostra(conteudo) {
+            document.write(conteudo);
+            pulaLinha();
+        }
+
+        var anoPassado = parseInt(prompt("Informe a pontuação do seu time ano passado"))
+        var vitorias = parseInt(prompt("Entre com o número de vitórias do seu time: "));
+        var empates = parseInt(prompt("Entre com o número de empates do seu time: "));
+        var pontos = vitorias * 3 + empates;
+
+        mostra("Pontuação ano passado: " + anoPassado);
+        mostra("Vítórias: " + vitorias);
+        mostra("Empates: " + empates);
+        mostra("Pontuação este ano: " + pontos);
+
+        if (pontos > anoPassado) mostra("Seu time está melhor que o ano passado!");
+        if (pontos < anoPassado) mostra("Seu time está pior que o ano passado!");
+        if (pontos == anoPassado) mostra("Seu time está igual o ano passado!");
+    </script>
+</body>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+    <h1> Projeto: "Tabuada"!</h1>
+    <script>
+
+        function pulaLinha() {
+            document.write("<br>");
+        }
+
+        function mostra(conteudo) {
+            document.write(conteudo);
+            pulaLinha();
+        }
+
+        var multiplicado;
+        var multiplicador;
+
+        while (multiplicado == undefined || isNaN(multiplicado)) {
+            multiplicado = parseInt(prompt("Informe qual tabuada você quer"));
+        }
+
+        for (multiplicador = 1; multiplicador <= 10; multiplicador++) {
+            mostra(multiplicado + " x " + multiplicador + " = " + (multiplicado * multiplicador));
+        }
+
+        mostra("FIM");
+
+    </script>
+</body>

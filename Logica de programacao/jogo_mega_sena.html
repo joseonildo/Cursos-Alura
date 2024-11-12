@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+
+<body>
+
+    <h1> Projeto: "Mega Sena"!</h1>
+
+    <h3>Valor total do Premio: R$
+        <output id="valorPremio"> </output>,00
+        <output id="acumulou"> </output>
+    </h3>
+
+    <p>Informe com quantas dezenas quer jogar! (4 a 20)</p>
+    <a>Dezenas:</a>
+    <input type="text" id="campoQtdDezenas" maxlength="2" size="1">
+    <button id="botaoValor">Valor do jogo</button>
+    <button id="botaoContinuar">Continuar</button><br>
+
+    <p>Agora informe o número de cada dezena do seu jogo!</p>
+    <a>Dezena <output id="campoNumDezena"></output>:</a>
+    <input type="text" id="campoChute" maxlength="2" size="1">
+    <button id="botaoChute">OK</button><br><br>
+
+    <a>Restantes:</a>
+    <output id="campoRestantes"> </output><br><br>
+
+    <a>Números sorteados :</a>
+    <output id="campoSorteados"> </output><br><br>
+    <a>Números chutados :</a>
+    <output id="campoChutados"> </output><br><br>
+    <a>Dezenas acertadas :</a>
+    <output id="campoAcertados"> </output><br><br>
+
+    <a>Quantidade de acertos:</a>
+    <output id="campoAcertos"> </output><br><br>
+
+    <a>Valor do seu jogo: R$ </a>
+    <output id="valorJogo"> </output><br><br>
+
+    <a>Valor do Premio pago: R$ </a>
+    <output id="valorPago"> </output><br><br>
+
+    <button id="jogarNovamente">Jogar Novamente?</button><br><br>
+    <button id="reiniciarTudo">Reiniciar tudo!</button>
+
+    <script>
+
+        var chutes, jogos, dezena, valorTotalDoPremio = 1000000;
+        var numerosSorteados = [], numerosChutados = [], dezenasAcertadas = [];
+        var valoresDoJogo = ["0.00", "0.75", "1.50", "2.25", "3.00", "3.75", "4.55", "31.50", "126.00",
+            "378.00", "945.00", "2079.00", "4158.00", "7722.00", "13513.50", "22522.50", "36036.00",
+            "55692.00", "83538.00", "122094.00", "174420.00"];
+
+        var campoValorPremio = document.querySelector("#valorPremio");
+        var campoAcumulou = document.querySelector("#acumulou");
+        var qtdDezenas = document.querySelector("#campoQtdDezenas");
+        var botaoValor = document.querySelector("#botaoValor");
+        var botaoQtdDezenas = document.querySelector("#botaoContinuar");
+        var numDezena = document.querySelector("#campoNumDezena");
+        var campoChute = document.querySelector("#campoChute");
+        var botaoChute = document.querySelector("#botaoChute");
+        var campoRestantes = document.querySelector("#campoRestantes");
+        var campoSorteados = document.querySelector("#campoSorteados");
+        var campoChutados = document.querySelector("#campoChutados");
+        var campoAcertados = document.querySelector("#campoAcertados");
+        var campoAcertos = document.querySelector("#campoAcertos");
+        var campoValorJogo = document.querySelector("#valorJogo");
+        var campoValorPago = document.querySelector("#valorPago");
+        var botaoJogarNovamente = document.querySelector("#jogarNovamente");
+        var botaoReiniciarTudo = document.querySelector("#reiniciarTudo");
+
+        botaoChute.disabled = true;
+        botaoJogarNovamente.disabled = true;
+        qtdDezenas.focus();
+        campoValorPremio.value = valorTotalDoPremio;
+        sortearMega();
+
+        function sortearNumero() {
+            var sorteado = Math.round(Math.random() * 60);
+            return sorteado;
+        }
+
+        function sortearMega() {
+            var sorteado, pula = 0;
+            for (var x = 0; x < 6; x++) {
+                sorteado = sortearNumero();
+                for (var y = 0; y < numerosSorteados.length; y++) {
+                    if (sorteado == numerosSorteados[y] || sorteado == 0) {
+                        pula = 1; x--;
+                    }
+                }
+                if (pula == 0) numerosSorteados.push(sorteado);
+                pula = 0;
+            }
+            numerosSorteados.sort(function (a, b) { return a - b });
+        }
+
+        function calcularValorJogo(exibeAlerta) {
+            jogos = parseInt(qtdDezenas.value)
+            if (isNaN(jogos) || jogos > 20) {
+                alert("Digite um número válido! (4 a 20)");
+                qtdDezenas.value = "";
+                qtdDezenas.focus();
+            }
+            else {
+                if (exibeAlerta) {
+                    alert("O valor do seu jogo para "+jogos+" dezenas é de: R$ "+valoresDoJogo[jogos]+"\nClique em continuar ou altere a quantidade!");
+                }
+                campoValorJogo.value = valoresDoJogo[jogos];
+            }
+        }
+
+        function definirNumeroDeDezenas() {
+            calcularValorJogo(0);
+            chutes = jogos;
+            botaoValor.disabled = true;
+            botaoQtdDezenas.disabled = true;
+            botaoChute.disabled = false;
+            campoChute.focus();
+            campoRestantes.value = jogos;
+            dezena = 1;
+            numDezena.value = dezena;
+        }
+
+        function criarSeuJogo() {
+            var chutado = parseInt(campoChute.value);
+            var repetido = 0;
+            for (var x = 0; x < numerosChutados.length; x++) {
+                if (chutado == numerosChutados[x]) { repetido = 1 }
+            }
+            if (isNaN(chutado) || chutado <= 0 || chutado > 60) {
+                alert("Digite um número válido! (de 1 a 60)");
+                campoChute.value = "";
+                campoChute.focus();
+            }
+            else if (repetido) {
+                alert("Número já digitado! Digite novo número! (de 1 a 60)");
+                campoChute.value = "";
+                campoChute.focus();
+            }
+            else {
+                for (var x = 0; x < numerosSorteados.length; x++) {
+                    if (chutado == numerosSorteados[x]) {
+                        dezenasAcertadas.push(chutado);
+                    }
+                }
+                numerosChutados.push(chutado);
+                campoChutados.value = numerosChutados.sort(function (a, b) { return a - b });
+                campoChute.value = "";
+                campoChute.focus();
+                chutes--;
+                dezena++;
+                if (dezena > jogos) dezena = jogos;
+                numDezena.value = dezena;
+                campoRestantes.value = chutes;
+                if (chutes <= 0) {
+                    dezenasAcertadas.sort(function (a, b) { return a - b });
+                    campoAcertos.value = dezenasAcertadas.length;
+                    campoSorteados.value = numerosSorteados;
+                    if (dezenasAcertadas.length == 0) {
+                        campoAcertados.value = "Nenhuma!";
+                    }
+                    else { campoAcertados.value = dezenasAcertadas; }
+                    if (dezenasAcertadas.length > 3) {
+                        pagaPremio(dezenasAcertadas.length);
+                    }
+                    else {                        
+                        botaoChute.disabled = true;
+                        botaoJogarNovamente.disabled = false;
+                        botaoJogarNovamente.focus();
+                    }
+                }
+            }
+        }
+
+        function pagaPremio(premio) {
+            if (premio == 6) {
+                alert("!!! PARABENS !!! \nVocê acertou as 6 dezenas e ganhou a MEGA SENA!! \nPREMIO PAGO: " + valorTotalDoPremio + ",00")
+                campoValorPago.value = valorTotalDoPremio;
+            }
+            else if (premio == 5) {
+                var premioQuina = valorTotalDoPremio*0.3;
+                alert("!!! PARABENS !!! \nVocê acertou 5 dezenas e ganhou a QUINA! \nPREMIO PAGO: " + premioQuina + ",00")
+                campoValorPago.value = premioQuina;
+            }
+            else {
+                var premioQuadra = valorTotalDoPremio*0.1;
+                alert("!!! PARABENS !!! \nVocê acertou 4 dezenas e ganhou a Quadra! \nPREMIO PAGO: " + premioQuadra + ",00")
+                campoValorPago.value = premioQuadra;
+            }            
+            valorTotalDoPremio = 1000000;
+            botaoChute.disabled = 1;
+            botaoJogarNovamente.disabled = false;
+            botaoJogarNovamente.focus();
+        }
+
+        function acumulaPremio(premio) {
+            valorTotalDoPremio += Math.round(parseFloat(valoresDoJogo[jogos]));
+            campoValorPremio.value = valorTotalDoPremio;
+            campoAcumulou.value = "- Acumulada!"
+
+        }
+        
+        function jogarNovamente() {
+            numerosSorteados = [];
+            numerosChutados = [];
+            dezenasAcertadas = [];
+            qtdDezenas.value = "";
+            campoChute.value = "";
+            campoChutados.value = "";
+            campoSorteados.value = "";
+            campoAcertados.value = "";
+            campoRestantes.value = "";
+            numDezena.value = "";
+            campoValorJogo.value = "";
+            botaoQtdDezenas.disabled = false;
+            botaoValor.disabled = false;
+            botaoChute.disabled = true;
+            botaoJogarNovamente.disabled = true;
+            sortearMega();
+            qtdDezenas.focus();
+            campoValorPremio.value = valorTotalDoPremio;
+        }
+
+        function reiniciarTudo() {
+            reiniciar = prompt("Tem certeza que quer reiniciar tudo? \nDigite 1 ou Sim para confirmar");
+            if (reiniciar == "s" || reiniciar == "sim" || reiniciar == "Sim" || reiniciar == "S" || reiniciar == "SIM" || reiniciar == "1") {
+                valorTotalDoPremio = 1000000;
+                campoValorPremio.value = valorTotalDoPremio;
+                reiniciar = "";
+                jogarNovamente();
+            }
+        }
+
+        botaoValor.onclick = calcularValorJogo;
+        botaoQtdDezenas.onclick = definirNumeroDeDezenas;
+        botaoChute.onclick = criarSeuJogo;
+        botaoJogarNovamente.onclick = jogarNovamente;
+        botaoReiniciarTudo.onclick = reiniciarTudo;
+
+    </script>
+
+</body>

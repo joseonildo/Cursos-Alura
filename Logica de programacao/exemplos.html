@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+
+<body>
+
+    <h1> Projeto: "Exemplos"!</h1>
+
+    <script>  
+        // let numeroSecreto, chute, quantidadeChutes, chutados, sair = 1;
+
+        // function sortearNumeroSecreto() {
+        //     numeroSecreto = parseInt((Math.random() * 100) + 1);
+        //     quantidadeChutes = 10;
+        //     chutados = "";
+        // }
+
+        // function jogarNovamente() {
+        //     let escolha = prompt("Jogar novamente? Digite Sim ou Não:").toLocaleLowerCase();
+        //     if (escolha === "sim" || escolha === "s" || escolha === "1") {
+        //         sortearNumeroSecreto();
+        //     } else {
+        //         sair = 0;
+        //     }
+        // }
+
+        // function validarChute() {
+        //     return !isNaN(chute) && chute >= 1 && chute <= 100;
+        // }
+
+        // sortearNumeroSecreto();
+
+        // while (sair) {
+        //     chute = parseInt(prompt("Digite um número de 1 a 100 \nNúmeros já chutados: " + chutados));
+
+        //     if (!validarChute()) {
+        //         alert("Por favor, insira um número válido de 1 a 100");
+        //     } else {
+        //         chutados += String(chute) + " ";
+
+        //         if (chute === 0) {
+        //             alert("Obrigado por jogar o meu jogo!\nAté a próxima vez!");
+        //             sair = 0;
+        //         } else if (chute === numeroSecreto) {
+        //             alert("Parabéns! Você acertou!! Número: " + chute + "\nNúmeros chutados: " + chutados);
+        //             jogarNovamente();
+        //         } else {
+        //             quantidadeChutes--;
+
+        //             if (quantidadeChutes === 0) {
+        //                 alert("Você errou 5 vezes!\nEsgotou sua quantidade de chutes!\nO número sorteado era: " + numeroSecreto + "\nNúmeros chutados: " + chutados);
+        //                 jogarNovamente();
+        //             } else {
+        //                 let maiorOuMenor = numeroSecreto > chute ? "maior" : "menor";
+        //                 alert("Você errou!! O número secreto é " + maiorOuMenor + "!\nVocê tem mais " + quantidadeChutes + " chutes!\nNúmeros já chutados: " + chutados);
+        //             }
+        //         }
+        //     }
+        // }
+
+// const delayms = (delayInms) => {
+//     return new Promise(resolve => setTimeout(resolve, delayInms));
+// };
+
+// const delay = async (t) => {  
+//   console.log('delay...')
+//   let delayres = await delayms(t);
+//   console.log('...terminou');
+// };
+// delay(500);
+    function delay(){
+        let datetime1 = new Date().getTime();
+        let datetime2 = datetime1+1000;// 1 second delay
+
+        while(datetime1<datetime2) {
+            datetime1 = new Date().getTime();
+        }
+    }
+    console.log("Inicio");
+    delay();
+    console.log("Fim");
+   </script>
+</body>

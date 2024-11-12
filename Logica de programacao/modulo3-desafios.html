@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+
+<body>                      
+
+<h1> Desafios!</h1>
+
+<script>                    // Inicio do programa em JavaScript
+
+function pulaLinha() {      // Função para pular linha na pagina html
+    document.write("<br>");
+}
+
+function mostra(conteudo) {  // Função para mostrar o conteúdo na pagina html
+    document.write(conteudo);
+    pulaLinha();
+}
+
+
+// MODULO 3 - Loops e tentativas
+mostra("<h2>MODULO 3 - Loops e tentativas</h2>");
+
+// Desafio 1 - Contador de 1 a 10
+mostra(`<h3>Desafio 1 - Contador de 1 a 10</h2>`);
+let contador = 1
+while(contador <= 10){
+    mostra(`Contador: ${contador}`);
+    contador++;
+}
+
+// Desafio 2 - Contador de 10 a 0
+mostra(`<h3>Desafio 2 - Contador de 10 a 0</h2>`);
+contador = 10
+while(contador >= 0){
+    mostra(`Contador: ${contador}`);
+    contador--;
+}
+
+// Desafio 3 - Contagem regressiva de número informado até 0
+mostra(`<h3>Desafio 3 - Contagem regressiva de número informado até 0</h2>`);
+contador = parseInt(prompt(`Contagem regressiva de número informado até 0 \nDigite um número para o contador: `));
+mostra(`Número Informado: ${contador}`);
+pulaLinha();
+while(contador >= 0){
+    mostra(`Contador: ${contador}`);
+    contador--;
+}
+
+// Desafio 4 - Contagem progressiva de 0 até o número informado
+mostra(`<h3>Desafio 4 - Contagem progressiva de 0 até o número informado</h2>`);
+contador = 0;
+numeroInformado = parseInt(prompt(`Contagem progressiva de 0 até o número informado \nDigite abaixo um número para o contador: `));
+mostra(`Número Informado: ${numeroInformado}`);
+pulaLinha();
+while(contador <= numeroInformado){
+    mostra(`Contador: ${contador}`);
+    contador++;
+}
+
+
+</script>
+</body>
